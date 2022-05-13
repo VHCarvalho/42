@@ -6,7 +6,7 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 08:58:27 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/05/12 14:19:56 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/05/13 14:31:54 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ char	*ft_strrchr(const char *s, int c)
 			return (0);
 		len--;
 	}
-	return (&s[len]);
+	return ((char *)&s[len]);
 }
