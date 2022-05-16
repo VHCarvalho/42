@@ -6,7 +6,7 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 09:48:18 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/05/16 09:18:44 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/05/16 12:49:43 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,30 +28,42 @@ int	is_overflow(int neg)
 	return (0);
 }
 
+int	is_negative(const char *str)
+{
+	if (*str == '-' || *str == '+')
+	{
+		if (*(str + 1) < '0' || *(str + 1) > '9')
+			return (0);
+		if (*str == '-')
+			return (-1);
+	}
+	return (1);
+}
+
 int	ft_atoi(const char *str)
 {
-	int		i;
 	int		neg;
 	long	ret;
 	long	tmp;
 
 	neg = 1;
-	i = 0;
-	while (is_blank(str[i]))
-		i++;
-	if (str[i] == '-')
+	while (is_blank(*str))
+		str++;
+	if (*str == '-' || *str == '+')
 	{
-		neg *= -1;
-		i++;
+		neg = is_negative(str);
+		str++;
 	}
+	if (neg == 0)
+		return (neg);
 	ret = 0;
-	while (str[i] >= '0' && str[i] <= '9')
+	while (*str >= '0' && *str <= '9')
 	{
 		tmp = ret;
-		ret = (ret * 10) + (str[i] - '0');
+		ret = (ret * 10) + (*str - '0');
 		if (tmp > ret)
 			return (is_overflow(neg));
-		i++;
+		str++;
 	}
 	return (ret * neg);
 }
