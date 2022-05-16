@@ -6,7 +6,7 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 09:23:19 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/05/12 10:30:03 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/05/16 13:00:48 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	unsigned char	*ptr;
-	unsigned char	find;
-	size_t			i;
+	char	*ptr;
+	char	find;
+	size_t	i;
 
-	ptr = (unsigned char *)s;
-	find = (unsigned char)c;
+	ptr = (char *)s;
+	find = (char)c;
 	i = 0;
 	while (i < n)
 	{
