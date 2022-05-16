@@ -6,33 +6,51 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 09:48:18 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/05/12 12:14:06 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/05/16 09:18:44 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include <stdio.h>
+
+int	is_blank(const char str)
+{
+	if (str == '\t' || str == '\n' || str == '\v' || str == '\f'
+		|| str == '\r' || str == ' ')
+		return (1);
+	return (0);
+}
+
+int	is_overflow(int neg)
+{
+	if (neg > 0)
+		return (-1);
+	return (0);
+}
+
 int	ft_atoi(const char *str)
 {
-	int	i;
-	int	neg;
-	int	ret;
+	int		i;
+	int		neg;
+	long	ret;
+	long	tmp;
 
-	if (!str)
-		return (0);
 	neg = 1;
 	i = 0;
-	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\v'
-		|| str[i] == '\f' || str[i] == '\r' || str[i] == ' ')
+	while (is_blank(str[i]))
 		i++;
-	while (str[i] == '-' || str[i] == '+')
+	if (str[i] == '-')
 	{
-		if (str[i] == '-')
-			neg *= -1;
+		neg *= -1;
 		i++;
 	}
 	ret = 0;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
+		tmp = ret;
 		ret = (ret * 10) + (str[i] - '0');
+		if (tmp > ret)
+			return (is_overflow(neg));
 		i++;
 	}
 	return (ret * neg);
