@@ -2,10 +2,11 @@ SRCS	= ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c f
 
 OBJS	= ${SRCS:.c=.o}
 
-NAME	= main
+NAME	= libft.a
 
 CC		= cc
 RM		= rm -f
+AR		= ar rc
 
 CFLAGS	= -Wall -Werror -Wextra
 
@@ -13,7 +14,7 @@ CFLAGS	= -Wall -Werror -Wextra
 			${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJS}
-			${CC} -o ${NAME} ${OBJS}
+			${AR} ${NAME} ${OBJS}
 
 all:		${NAME}
 
