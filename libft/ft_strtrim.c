@@ -28,6 +28,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	ret = ft_substr((char *)s1, 0, len + 1);
 	if (!ret)
 	{
+		free(ret);
 		ret = malloc(sizeof(char));
 		if (ret == NULL)
 			return (NULL);
