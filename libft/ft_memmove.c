@@ -6,13 +6,11 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 11:39:23 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/05/16 14:27:41 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/05/17 10:49:23 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
-#include <string.h>
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
