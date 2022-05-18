@@ -6,7 +6,7 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 10:05:05 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/05/13 10:50:13 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/05/18 11:02:25 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (ret == NULL)
 		return (ret);
 	ft_strlcpy(ret, s1, s1_len + 1);
-	ft_strlcat(ret, s2, len);
+	ft_strlcat(ret, s2, len + 1);
 	return (ret);
 }
