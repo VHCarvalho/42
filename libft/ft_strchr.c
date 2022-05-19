@@ -6,13 +6,16 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 14:56:44 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/05/13 13:40:02 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/05/19 09:15:38 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 char	*ft_strchr(const char *s, int c)
 {
-	while (*s != c)
+	char	find;
+
+	find = (char)c;
+	while (*s != find)
 	{
 		if (*s == '\0')
 			return (0);
