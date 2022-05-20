@@ -37,21 +37,27 @@ size_t	word_len(char const *s, char c)
 	size_t	len;
 
 	len = 0;
+	
 	while (*s != c && *s)
+	{
 		len++;
+		s++;
+	}
 	return (len);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**ret;
+	char		**ret;
 	size_t	count;
 	size_t	i;
 	size_t	len;
 	size_t	j;
 
 	count = count_words((char *)s, c);
-	ret = malloc(sizeof(char **) * count + 1);
+	ret = ft_calloc(count + 1, sizeof(char **));
+	if (!s || !ret)
+		return (NULL);
 	i = 0;
 	j = 0;
 	while (i < count)
@@ -61,34 +67,33 @@ char	**ft_split(char const *s, char c)
 			j++;
 			continue ;
 		}
-		if (i == 0)
+		if (i == 0 && s[j] != c)
 		{
-			len = ft_strchr(s + j, c) - s;
+			len = word_len(s + j, c);
 			ret[i] = ft_substr(s, j, len);
+			s = ft_strchr(s + j, c);
+			j = 0;
 			i++;
+			continue ;
 		}
-		else if (s[j] == c)
+		else if (s[j] != c && s[j - 1] == c && i > 0)
 		{
-			len = ft_strchr(s + j - 1, c) - s;
-			ret[i] = ft_substr(s, j, len - 1);
+			len = word_len(s + j, c);
+			ret[i] = ft_substr(s, j, len);
+			s = ft_strchr(s + j, c);
+			j = 0;
 			i++;
+			continue ;
 		}
 		j++;
 	}
-	/*while (i < count)
-	{
-		ret[i] = ft_strdup(s);
-		s += ft_strlen(s) + 1;
-		i++;
-	}*/
-	ret[i] = malloc(sizeof(char *));
-	ret[i][0] = '\0';
+	ret[i] = '\0';
 	return (ret);
 }
-
+/*
 int	main(void)
 {
-	char	s[] = "aaavamos aaaaala playa";
+	char	s[] = "aaaaaavamos aaaaaa la playa";
 	char	c = 'a';
 	char	**ret;
 	int		i;
@@ -96,9 +101,15 @@ int	main(void)
 	i = 0;
 	ret = ft_split(s, c);
 	printf("começando\n");
-	while(ret[i][0] != '\0')
+	while(ret[i])
 	{
 		printf("ret: %s\n", ret[i]);
 		i++;
 	}
-}
+	i++;
+	while (i >= 0)
+	{
+		free(ret[i]);
+		i--;
+	}
+}*/
