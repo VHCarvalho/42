@@ -6,7 +6,7 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 09:23:39 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/05/19 11:14:03 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/05/21 12:08:52 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-typedf struct	s_list
+typedef struct	s_list
 {
 	void					*content;
 	struct s_list	*next;
