@@ -6,7 +6,7 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 11:12:56 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/05/19 17:55:46 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/05/21 12:07:03 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ size_t	word_len(char const *s, char c)
 	size_t	len;
 
 	len = 0;
-	
 	while (*s != c && *s)
 	{
 		len++;
@@ -46,48 +45,45 @@ size_t	word_len(char const *s, char c)
 	return (len);
 }
 
-char	**ft_split(char const *s, char c)
+void	write_words(char **ret, char const *s, char c, size_t count)
 {
-	char		**ret;
-	size_t	count;
 	size_t	i;
-	size_t	len;
 	size_t	j;
+	size_t	len;
 
-	count = count_words((char *)s, c);
-	ret = ft_calloc(count + 1, sizeof(char **));
-	if (!s || !ret)
-		return (NULL);
 	i = 0;
 	j = 0;
 	while (i < count)
 	{
-		if (i == 0 && s[j] == c)
-		{
-			j++;
-			continue ;
-		}
 		if (i == 0 && s[j] != c)
 		{
 			len = word_len(s + j, c);
-			ret[i] = ft_substr(s, j, len);
+			ret[i++] = ft_substr(s, j, len);
 			s = ft_strchr(s + j, c);
-			j = 0;
-			i++;
-			continue ;
+			j = -1;
 		}
 		else if (s[j] != c && s[j - 1] == c && i > 0)
 		{
 			len = word_len(s + j, c);
-			ret[i] = ft_substr(s, j, len);
+			ret[i++] = ft_substr(s, j, len);
 			s = ft_strchr(s + j, c);
-			j = 0;
-			i++;
-			continue ;
+			j = -1;
 		}
 		j++;
 	}
-	ret[i] = '\0';
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**ret;
+	size_t	count;
+
+	count = count_words((char *)s, c);
+		ret = ft_calloc(count + 1, sizeof(char **));
+	if (!s || !ret)
+		return (NULL);
+	write_words(ret, s, c, count);
+	ret[count] = '\0';
 	return (ret);
 }
 /*
