@@ -6,7 +6,7 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 09:23:39 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/05/21 12:08:52 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/05/22 14:15:11 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,6 @@ char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char		*ft_itoa(int n);
 char		**ft_split(char const *s, char c);
 t_list	*ft_lstnew(void *content);
+void		ft_lstadd_front(t_list **lst, t_list *new);
 
 #endif

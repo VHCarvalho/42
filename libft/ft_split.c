@@ -6,12 +6,11 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 11:12:56 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/05/21 12:07:03 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/05/22 12:21:20 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 size_t	count_words(char *s, char c)
 {
@@ -86,26 +85,3 @@ char	**ft_split(char const *s, char c)
 	ret[count] = '\0';
 	return (ret);
 }
-/*
-int	main(void)
-{
-	char	s[] = "aaaaaavamos aaaaaa la playa";
-	char	c = 'a';
-	char	**ret;
-	int		i;
-
-	i = 0;
-	ret = ft_split(s, c);
-	printf("começando\n");
-	while(ret[i])
-	{
-		printf("ret: %s\n", ret[i]);
-		i++;
-	}
-	i++;
-	while (i >= 0)
-	{
-		free(ret[i]);
-		i--;
-	}
-}*/
