@@ -6,7 +6,7 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 12:18:45 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/05/19 10:08:05 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/05/22 14:34:24 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	total = nmemb * size;
 	if (total / nmemb != size)
 		return (NULL);
-	ret = malloc(size * nmemb);
+	ret = malloc(total);
 	if (ret == NULL)
 		return (ret);
-	ft_bzero(ret, nmemb * size);
+	ft_bzero(ret, total);
 	return (ret);
 }
