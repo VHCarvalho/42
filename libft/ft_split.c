@@ -6,12 +6,11 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 11:12:56 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/05/23 09:56:03 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/05/23 14:08:48 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 size_t	count_words(char *s, char c)
 {

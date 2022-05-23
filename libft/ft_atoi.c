@@ -6,12 +6,11 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 09:48:18 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/05/16 12:49:43 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/05/23 14:05:00 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
+#include "libft.h"
 
 int	is_blank(const char str)
 {
