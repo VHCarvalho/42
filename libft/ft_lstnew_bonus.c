@@ -6,7 +6,7 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 13:16:50 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/05/22 15:55:15 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/05/23 08:08:23 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ t_list	*ft_lstnew(void *content)
 	t_list	*node;
 
 	node = malloc(sizeof(t_list));
+	if (!node)
+		return (NULL);
 	node->content = content;
 	node->next = NULL;
 	return (node);
