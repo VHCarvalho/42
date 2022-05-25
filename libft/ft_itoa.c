@@ -6,13 +6,13 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 13:50:42 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/05/19 08:53:30 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/05/25 17:57:05 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	log_ten(long nbr)
+static int	log_ten(long nbr)
 {
 	size_t	i;
 

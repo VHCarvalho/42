@@ -6,13 +6,13 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 09:48:18 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/05/23 14:05:00 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/05/25 17:56:43 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	is_blank(const char str)
+static int	is_blank(const char str)
 {
 	if (str == '\t' || str == '\n' || str == '\v' || str == '\f'
 		|| str == '\r' || str == ' ')
@@ -20,14 +20,14 @@ int	is_blank(const char str)
 	return (0);
 }
 
-int	is_overflow(int neg)
+static int	is_overflow(int neg)
 {
 	if (neg > 0)
 		return (-1);
 	return (0);
 }
 
-int	is_negative(const char *str)
+static int	is_negative(const char *str)
 {
 	if (*str == '-' || *str == '+')
 	{
