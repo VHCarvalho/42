@@ -6,13 +6,14 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:28:29 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/05/25 17:57:19 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/05/26 14:57:28 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	check_new(t_list *new, t_list *lst, t_list *head, void (*del)(void *))
+static int	check_new(t_list *new, t_list *lst, t_list *head,
+		void (*del)(void *))
 {
 	if (!new)
 	{
