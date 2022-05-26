@@ -6,7 +6,7 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 08:32:20 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/05/26 09:54:04 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/05/26 17:21:53 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,21 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-/*char	*get_next_line(int fd)
+char	*get_next_line(int fd)
 {
+	static char	*stash;
+	char		*buff;
+	int			check;
 
-}*/
+	buff = malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (!buff)
+		return (NULL);
+	check = read(fd, buff, BUFFER_SIZE);
+	if (check > 1)
+	{
+
+	}
+}
 
 int	main(void)
 {
