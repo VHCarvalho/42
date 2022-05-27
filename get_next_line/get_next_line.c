@@ -6,7 +6,7 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 08:32:20 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/05/27 15:04:11 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/05/27 15:17:01 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ char	*get_next_line(int fd)
 	while (check > 0)
 	{
 		stash = ft_strjoin(stash, buff);
+		printf("%s\n", stash);
 		if (ft_strchr(stash, '\n'))
 		{
 			while (stash[len] != '\n')
