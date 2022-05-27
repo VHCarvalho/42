@@ -6,51 +6,63 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 08:32:20 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/05/26 17:21:53 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/05/27 15:04:11 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include <stdio.h>
-#include <stdlib.h>
-#include <sys/stat.h>
-#include <fcntl.h>
+#include "get_next_line.h"
 
 char	*get_next_line(int fd)
 {
 	static char	*stash;
 	char		*buff;
+	char		*line;
+	char		*tmp;
+	size_t		len;
 	int			check;
 
+	if (fd < 0)
+		return (NULL);
 	buff = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (!buff)
 		return (NULL);
+	len = 0;
+	line = NULL;
 	check = read(fd, buff, BUFFER_SIZE);
-	if (check > 1)
+	printf("check: %d\n", check);
+	if (check == 0)
+		return (stash);
+	else if (check < 0)
+		return (NULL);
+	while (check > 0)
 	{
-
+		stash = ft_strjoin(stash, buff);
+		if (ft_strchr(stash, '\n'))
+		{
+			while (stash[len] != '\n')
+				len++;
+			line = ft_substr(stash, 0, len);
+			tmp = ft_substr(stash, len, ft_strlen(stash));
+			free(stash);
+			stash = tmp;
+			break ;
+		}
+		check = read(fd, buff, BUFFER_SIZE);
+		printf("check: %d\n", check);
 	}
+	free(buff);
+	return (line);
 }
 
 int	main(void)
 {
 	int		fd;
 	char 	*line;
-	size_t	count;
-	int		check;
 
-	count = 5;
-	line = malloc(sizeof(char) * count + 1);
 	fd = open("text4.txt", O_RDONLY);
-	check = 0;
-	while ((read(fd, line, count)) > 0)
-	{
-		if (check > 0)
-			line = malloc(sizeof(char) * count + 1);
-		read(fd, line, count);
-		line[count] = '\0';
-		printf("%s\n", line);
-		free(line);
-		check++;
-	}
+	line = get_next_line(fd);
+	printf("%s", line);
+	close(fd);
+	free(line);
 }
