@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line2.c                                   :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
+/*   By: vcarvalh <vh.crvlh@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 09:46:08 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/05/30 12:55:09 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/05/30 19:06:34 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,10 @@
 static char	*store_buffer(char *buff, char *stash)
 {
 	size_t	i;
-	size_t	j;
-	char		*str;
+	char	*str;
 
 	if (!buff)
-		return (NULL) ;
+		return (NULL);
 	i = 0;
 	if (!stash)
 	{
@@ -47,16 +46,7 @@ static char	*store_buffer(char *buff, char *stash)
 		str[i] = '\0';
 		return (str);
 	}
-	str = malloc(sizeof(char) * (ft_strlen(buff) + ft_strlen(stash) + 1));
-	while (stash[i])
-	{
-		str[i] = stash[i];
-		i++;
-	}
-	j = 0;
-	while (buff[j])
-		str[i++] = buff[j++];
-	str[i] = '\0';
+	str = ft_strjoin(stash, buff);
 	free(stash);
 	return (str);
 }
@@ -82,12 +72,13 @@ static char	*get_line(char *stash, char *line)
 	line[i + 1] = '\0';
 	return (line);
 }
+
 static char	*stash_leftovers(char *stash)
 {
-	size_t 	i;
+	size_t	i;
 	size_t	j;
-	size_t 	new_len;
-	char		*str;
+	size_t	new_len;
+	char	*str;
 
 	if (!stash)
 		return (NULL);
@@ -101,6 +92,11 @@ static char	*stash_leftovers(char *stash)
 		new_len++;
 		i++;
 	}
+	if (new_len == 0)
+	{
+		free(stash);
+		return (NULL);
+	}
 	str = malloc(sizeof(char) * new_len + 1);
 	i = 0;
 	while (stash[j])
@@ -112,10 +108,10 @@ static char	*stash_leftovers(char *stash)
 
 char	*get_next_line(int fd)
 {
-	static char *stash;
-	char				*buff;
-	char				*line;
-	int					bytes;
+	static char	*stash;
+	char		*buff;
+	char		*line;
+	int			bytes;
 
 	if (fd < 0)
 		return (NULL);
@@ -139,6 +135,7 @@ char	*get_next_line(int fd)
 	}
 	if (bytes == 0)
 	{
+		free(buff);
 		return (stash);
 	}
 	free(buff);
@@ -150,15 +147,14 @@ int	main(void)
 	int		fd;
 	char	*line;
 
-	fd = open("text4.txt", O_RDONLY);
+	fd = open("text1.txt", O_RDONLY);
 	line = get_next_line(fd);
-	while (line)
+	while (line != NULL)
 	{
 		printf("%s", line);
 		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
-	free(line);
 	return (0);
 }
