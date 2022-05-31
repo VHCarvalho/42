@@ -6,7 +6,7 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:58:45 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/05/27 14:13:56 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/05/31 17:20:21 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ char	*ft_strchr(const char *s, int c)
 	char	find;
 
 	find = (char)c;
+	if (!s)
+		return (0);
 	while (*s != find)
 	{
 		if (*s == '\0')
@@ -114,7 +116,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (ret);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char const *s2)
 {
 	char	*ret;
 	size_t	len;
