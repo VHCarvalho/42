@@ -6,54 +6,12 @@
 /*   By: vcarvalh <vh.crvlh@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 09:46:08 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/05/31 17:22:07 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/07/21 09:48:24 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
-/*get_next_line:
- *alocar buffer_size + 1
- *checar o retorno de read
- *se for maior que 0:
- *	adicionar '\0' no final
- *	concatenar com o stash
- *	checar se o stash está com \n
- *	se estiver:
- *	separar, retornar tudo antes de \n e guardar o resto em stash
- *se read for igual a 0:
- *	dar free em buff e retornar stash
- *	se read for menor que 0:
- *	dar free em buff e stash e retornar null;
- */
-
-static char	*store_buffer(char *buff, char *stash)
-{
-	size_t	i_stash;
-	size_t	i_buff;
-	char	*str;
-
-	if (!stash)
-	{
-		stash = malloc(sizeof(char));
-		stash[0] = '\0';
-	}
-	if (!buff || !stash)
-		return (NULL);
-	str = malloc(sizeof(char) * (ft_strlen(buff) + ft_strlen(stash) + 1));
-	if (!str)
-		return (NULL);
-	i_stash = -1;
-	if (stash)
-		while (stash[++i_stash])
-			str[i_stash] = stash[i_stash];
-	i_buff = 0;
-	while (buff[i_buff])
-		str[i_stash++] = buff[i_buff++];
-	str[ft_strlen(buff) + ft_strlen(stash)] = '\0';
-	free(stash);
-	return (str);
-}
 
 static char	*get_line(char *stash)
 {
@@ -63,7 +21,7 @@ static char	*get_line(char *stash)
 	i = 0;
 	if (!stash[i])
 		return (NULL);
-	while (stash[i] != '\n')
+	while (stash[i] && stash[i] != '\n')
 		i++;
 	str = malloc(sizeof(char) * (i + 2));
 	if (!str)
@@ -108,7 +66,8 @@ static char	*stash_leftovers(char *stash)
 	free(stash);
 	return (str);
 }
-char	*read_buffer(int fd, char *stash)
+
+static char	*read_buffer(int fd, char *stash)
 {
 	char	*buff;
 	int		bytes;
@@ -117,18 +76,17 @@ char	*read_buffer(int fd, char *stash)
 	if (!buff)
 		return (NULL);
 	bytes = 1;
-	while (!ft_strchr(stash, '\n') && bytes != 0)
+	while (!ft_strchr(stash, '\n') && bytes > 0)
 	{
 		bytes = read(fd, buff, BUFFER_SIZE);
-		if (bytes == -1)
-		{
-			free(buff);
-			return (NULL);
-		}
+		if (bytes < 0)
+			break ;
 		buff[bytes] = '\0';
-		stash = store_buffer(buff, stash);
+		stash = ft_strjoin(stash, buff);
 	}
 	free(buff);
+	if (bytes < 0)
+		return (NULL);
 	return (stash);
 }
 
