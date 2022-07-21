@@ -6,10 +6,11 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:10:16 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/07/21 14:14:52 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/07/21 15:54:43 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 size_t	ft_strlen(const char *str)
 {
 	size_t	len;
@@ -20,7 +21,7 @@ size_t	ft_strlen(const char *str)
 	return (len);
 }
 
-void	ft_putstr(char *s)
+int	ft_putstr(char *s)
 {
 	if (!s)
 		writr(1, "(null)", 6);
@@ -31,10 +32,25 @@ void	ft_putstr(char *s)
 		write(1, s, len);
 		s++;
 	}
+	return (len);
 }
 
 int	ft_putchar(char c)
 {
 	write(1, &c, 1);
 	return (1);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	char	find;
+
+	find = (char)c;
+	while (*s != find)
+	{
+		if (*s == '\0')
+			return (0);
+		s++;
+	}
+	return ((char *)s);
 }

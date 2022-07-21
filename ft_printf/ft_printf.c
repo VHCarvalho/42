@@ -6,9 +6,11 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 13:32:17 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/07/21 14:37:17 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/07/21 15:51:41 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_printf.h"
 
 int	print_arg(const char *str, int i, va_list list)
 {
@@ -34,16 +36,16 @@ int	ft_printf(const char *str, ...)
 
 	while (str[i])
 	{
-		if (format[i] == '%' && ft_strchr("cspdiuxX%", format[i + 1]))
+		if (str[i] == '%' && ft_strchr("cspdiuxX%", str[i + 1]))
         {
             ret += print_arg(str, i, list);
             i++;
         }
         else
-            ret += ft_putchar(format[i]);
+            ret += ft_putchar(str[i]);
         i++;
     }
-	va_end(ap);
+	va_end(list);
 	return (ret);
 }
 
