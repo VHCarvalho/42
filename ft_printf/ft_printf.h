@@ -6,7 +6,7 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:20:10 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/07/25 10:48:10 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/07/25 12:55:03 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ int		log_hex(unsigned long nbr);
 char	*ft_hextoa(unsigned int n, char *str);
 int		ft_puthex(unsigned int nbr, char *str);
 char	*ft_ptrtoa(unsigned long n, char *str);
-int	ft_putptr(unsigned long n, char *str);
+int		ft_putptr(unsigned long n, char *str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 13:32:17 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/07/25 10:46:43 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/07/25 11:12:06 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	print_arg(const char *str, int i, va_list list)
 	else if (str[i + 1] == 'c')
 		return (ft_putchar(va_arg(list, int)));
 	else if (str[i + 1] == 's')
-		return (ft_putchar(va_arg(list, int)));
+		return (ft_putstr(va_arg(list, char *)));
 	else if (str[i + 1] == 'p')
 		return (ft_putptr(va_arg(list, unsigned long), "0123456789abcdef"));
 	else if (str[i + 1] == 'd' || str[i + 1] == 'i')
