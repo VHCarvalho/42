@@ -6,7 +6,7 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:58:41 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/08/25 18:06:25 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/09/04 12:30:07 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	action(int sig, siginfo_t *info, void *context)
 	static int				i;
 	static unsigned char	c;
 
+	(void)context;
+	(void)info;
 	if (i < 8)
 	{
 		if (sig == SIGUSR1)
@@ -46,6 +48,8 @@ int	main(void)
 
 	pid = getpid();
 	sa.sa_sigaction = action;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = SA_SIGINFO;
 	printf("%d\n", pid);
 	while (1)
 	{
