@@ -6,21 +6,22 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:58:44 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/09/04 21:37:52 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/09/06 09:56:34 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void error(unsigned char *str)
+void	error(unsigned char *str)
 {
 	if (str)
 		free(str);
 	exit(EXIT_FAILURE);
 }
-int send_null(int pid, unsigned char *str)
+
+int	send_null(int pid, unsigned char *str)
 {
-	static int bit;
+	static int	bit;
 
 	if (bit < 8)
 	{
@@ -33,12 +34,12 @@ int send_null(int pid, unsigned char *str)
 	return (1);
 }
 
-int send_bit(int pid, unsigned char *str)
+int	send_bit(int pid, unsigned char *str)
 {
 	static unsigned char	*message;
-	static int						s_pid;
-	static int						bit;
-	static int						c;
+	static int				s_pid;
+	static int				bit;
+	static int				c;
 
 	if (str)
 		message = (unsigned char *)ft_strdup((const char *)str);
@@ -59,13 +60,13 @@ int send_bit(int pid, unsigned char *str)
 	return (0);
 }
 
-void handler(int signum)
+void	handler(int signum)
 {
-	int ret;
+	int	ret;
 
 	ret = 0;
 	if (signum == SIGUSR1)
-		ret = send_bit(0,0);
+		ret = send_bit(0, 0);
 	if (ret == 1)
 	{
 		ft_putstr_fd("Fim!\n", 1);
@@ -73,10 +74,10 @@ void handler(int signum)
 	}
 }
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	unsigned char	*str;
-	int						pid;
+	int				pid;
 
 	if (argc != 3)
 	{
