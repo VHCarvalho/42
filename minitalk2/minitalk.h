@@ -6,7 +6,7 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 12:13:06 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/09/03 13:20:55 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/09/08 08:14:00 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,5 @@
 
 # include <signal.h>
 # include "libft/libft.h"
-
-
 
 #endif
