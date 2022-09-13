@@ -1,24 +1,19 @@
-	# Library Name #
+
 NAME	=
 CLIENT	=	client
 SERVER	=	server
-	# libft Variables #
+
 LIBFT		=	./libft/libft.a
 LIBFT_DIR	=	./libft
 
-
-	# Mandatory Variables #
 SRC_C	=	client.c
 SRC_S	=	server.c
-INC		=	-I. -I$(LIBFT_DIR)# -I$(LIBFT_DIR)/stack \
-			-I$(LIBFT_DIR)/get_next_line
+INC		=	-I. -I$(LIBFT_DIR)
 
-	# Compiling Variables #
 CC			=	gcc
 CFLAG		=	-Wall -Wextra -Werror
 RM			=	rm -f
 
-	# Colors #
 GREEN		=	\e[38;5;118m
 YELLOW		=	\e[38;5;226m
 RESET		=	\e[0m
@@ -66,9 +61,7 @@ fclean:
 re: fclean all
 
 mandatory:	$(CLIENT) $(SERVER)
-bonus:		mandatory
 
 m : mandatory
-b : bonus
 
 .PHONY: all clean fclean re mandatory m bonus b
