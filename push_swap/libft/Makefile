@@ -17,8 +17,8 @@ CFLAGS	= -Wall -Werror -Wextra
 .c.o:
 			${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
-$(NAME):	${OBJS}
-			${AR} ${NAME} ${OBJS}
+$(NAME):	${OBJS} ${BN_OBJS}
+			${AR} ${NAME} ${OBJS} ${BN_OBJS}
 			ranlib ${NAME}
 
 all:		${NAME}

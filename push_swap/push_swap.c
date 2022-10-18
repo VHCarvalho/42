@@ -6,11 +6,12 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:52:51 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/10/18 17:06:05 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/10/18 18:02:46 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
+#include <stdio.h>
 
 // Tasklist:
 // -Receber os argumentos e armazenar em um linked list na ordem correta
@@ -33,6 +34,7 @@ int main(int argc, char *argv[])
 	int		count;
 	t_list	*stack_a;
 	t_list	*tmp;
+	t_list 	*ptr;
 	
 	count = 1;
 	while (count < argc)
@@ -41,10 +43,15 @@ int main(int argc, char *argv[])
 			stack_a = ft_lstnew(argv[count]);
 		else
 			tmp = ft_lstnew(argv[count]);
-			ft_lstadd_front(stack_a, tmp);
+			ft_lstadd_front(&stack_a, tmp);
 		count++;
 	}
-
-	while 
+	ptr  = stack_a;
+	while (ptr->next != NULL)
+	{
+		printf("%d\n", (int)ptr->content);
+		ptr = ptr->next;
+	}
+	printf("%d\n", (int)ptr->content);
 	return (0);
 }
