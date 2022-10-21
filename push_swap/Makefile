@@ -9,17 +9,22 @@ LIBFT_DIR = ./libft
 INC				= -I. -I$(LIBFT_DIR)
 
 CC				= gcc
-CFLAG			= -Wall -Wextra -Werror
+CFLAG			= -Wall -Wextra -Werror -g
 RM				= rm -f
+
+ifeq ($(DEBUG), 1)
+	D_FLAG = -g
+endif
+
 
 all:			$(NAME)
 
 $(NAME):	$(OBJS) $(LIBFT)
-	 $(CC) $(CFLAG) $(SRCS) $(LIBFT) $(INC) -o $(NAME)
+	 $(CC)  $(CFLAG) $(SRCS) $(LIBFT) $(INC) -o $(NAME)
 	 printf "Compiled.\n"
 
 $(LIBFT):
-	 $(MAKE) -s -C $(LIBFT_DIR)
+	 $(MAKE) DEBUG=$(DEBUG) -s -C $(LIBFT_DIR)
 
 clean: 
 	 $(RM) $(OBJS)
