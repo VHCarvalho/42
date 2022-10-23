@@ -6,7 +6,7 @@
 /*   By: vcarvalh <vh.crvlh@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 20:33:33 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/10/22 20:42:56 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/10/23 16:33:23 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,49 @@
 // V-sa (swap a): Swap the first 2 elements at the top of stack a. Do nothing if there is only one or no elements.
 // V-sb (swap b): Swap the first 2 elements at the top of stack b. Do nothing if there is only one or no elements.
 // V-ss: sa and sb at the same time.
-// --pa (push a): Take the first element at the top of b and put it at the top of a. Do nothing if b is empty.
-// --pb (push b): Take the first element at the top of a and put it at the top of b. Do nothing if a is empty.
-// --ra (rotate a): Shift up all elements of stack a by 1. The first element becomes the last one.
-// --rb (rotate b): Shift up all elements of stack b by 1. The first element becomes the last one.
-// --rr : ra and rb at the same time.
-// --rra (reverse rotate a): Shift down all elements of stack a by 1. The last element becomes the first one.
-// --rrb (reverse rotate b): Shift down all elements of stack b by 1. The last element becomes the first one.
-// --rrr : rra and rrb at the same time.
+// V-pa (push a): Take the first element at the top of b and put it at the top of a. Do nothing if b is empty.
+// V-pb (push b): Take the first element at the top of a and put it at the top of b. Do nothing if a is empty.
+// V-ra (rotate a): Shift up all elements of stack a by 1. The first element becomes the last one.
+// V-rb (rotate b): Shift up all elements of stack b by 1. The first element becomes the last one.
+// V-rr : ra and rb at the same time.
+// V-rra (reverse rotate a): Shift down all elements of stack a by 1. The last element becomes the first one.
+// V-rrb (reverse rotate b): Shift down all elements of stack b by 1. The last element becomes the first one.
+// V-rrr : rra and rrb at the same time.
 
-t_list	*ft_lstadd_front2(t_list	*lst, int *content)
+t_list	**ft_stkrev_rotate(t_list **stacks_ptr, int stkindex)
 {
-	t_list	*node;
+	t_list	*ptrhead;
+	t_list	*ptrlast;
+	t_list	*new_last;
 
-	node = ft_lstnew(content);
-	node->next = lst;
-	lst = node;
-	return (lst);
+	ptrhead = stacks_ptr[stkindex];
+	if (ptrhead->next == NULL)
+		return (stacks_ptr);
+	new_last = ptrhead;
+	while (new_last->next->next != NULL)
+		new_last = new_last->next;
+	ptrlast = new_last->next;
+	ptrlast->next = ptrhead;
+	new_last->next = NULL;
+	stacks_ptr[stkindex] = ptrlast;
+	return (stacks_ptr);
+}
+
+t_list	**ft_stkrotate(t_list	**stacks_ptr, int stkindex)
+{
+	t_list	*ptrhead;
+	t_list	*ptrlast;
+	t_list	*new_head;
+
+	ptrhead = stacks_ptr[stkindex];
+	if (ptrhead->next == NULL)
+		return (stacks_ptr);
+	new_head = ptrhead->next;
+	ptrlast = ft_lstlast(ptrhead);
+	ptrlast->next = ptrhead;
+	ptrhead->next = NULL;
+	stacks_ptr[stkindex] = new_head;
+	return (stacks_ptr);
 }
 
 void	ft_stkfree_stacks(t_list **stacks_ptr)
@@ -69,13 +95,15 @@ t_list	**ft_stkpush_to_stack(t_list **stacks_ptr, int src, int dst)
 	t_list	*stk_src;
 	t_list	*stk_dst;
 
-	//falta adicionar a situação onde não vai sobrar nada na stack, eu acho
 	stk_src = stacks_ptr[src];
 	if (stk_src->content == NULL)
 		return (stacks_ptr);
 	stk_dst = stacks_ptr[dst];
 	swap = stk_src;
-	stk_src = stk_src->next;
+	if (stk_src->next != NULL)
+		stk_src = stk_src->next;
+	else
+		stk_src = ft_lstnew(NULL);
 	if (stk_dst->content == NULL)
 	{
 		ft_lstdelone(stk_dst, free);
@@ -104,14 +132,17 @@ t_list	*ft_stkswap(t_list *stack)
 	return (stack);
 }
 
-t_list	*ft_stkpush(t_list *stack, int *content)
+t_list	**ft_stkpush(t_list **stack, int *content)
 {
-	if (stack->content == NULL)
+	t_list	*ptrstk;
+
+	ptrstk = *stack;
+	if (ptrstk->content == NULL)
 	{
-		ft_lstdelone(stack, free);
-		stack = ft_lstnew(content);
+		ft_lstdelone(ptrstk, free);
+		ptrstk = ft_lstnew(content);
 	}
 	else
-		stack = ft_lstadd_front2(stack, content);
+		ft_lstadd_front(stack, ft_lstnew(content));
 	return (stack);
 }

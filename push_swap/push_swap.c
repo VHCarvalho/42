@@ -6,7 +6,7 @@
 /*   By: vcarvalh <vh.crvlh@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:52:51 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/10/22 20:40:16 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/10/23 16:26:39 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,18 @@ int main(int argc, char *argv[])
 		if (nbr == NULL)
 			return (0);
 		*nbr = ft_atoi(argv[count]);
-		stacks_ptr[0] = ft_stkpush(stacks_ptr[0], nbr);
+		stacks_ptr = ft_stkpush(stacks_ptr, nbr);
 		count++;
 	}
 	stacks_ptr[0] = ft_stkswap(stacks_ptr[0]);
 	stacks_ptr = ft_stkpush_to_stack(stacks_ptr, 0, 1);
 	stacks_ptr = ft_stkpush_to_stack(stacks_ptr, 0, 1);
 	stacks_ptr = ft_stkpush_to_stack(stacks_ptr, 0, 1);
+	stacks_ptr = ft_stkpush_to_stack(stacks_ptr, 0, 1);
+	stacks_ptr = ft_stkpush_to_stack(stacks_ptr, 0, 1);
+	stacks_ptr = ft_stkpush_to_stack(stacks_ptr, 1, 0);
+	stacks_ptr = ft_stkpush_to_stack(stacks_ptr, 1, 0);
+	stacks_ptr = ft_stkrev_rotate(stacks_ptr, 1);
 	stack_a = stacks_ptr[0];
 	stack_b = stacks_ptr[1];
 	while (stacks_ptr[0]->next != NULL)
@@ -53,7 +58,10 @@ int main(int argc, char *argv[])
 		stacks_ptr[0] = stacks_ptr[0]->next;
 	}
 	nbr = stacks_ptr[0]->content;
-	printf("%d\n", *nbr);
+	if (!nbr)
+		printf("NULL\n");
+	else
+		printf("%d\n", *nbr);
 	printf("--------\n");
 	while (stacks_ptr[1]->next != NULL)
 	{
