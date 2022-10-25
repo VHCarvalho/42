@@ -6,7 +6,7 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 10:53:42 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/10/24 12:59:23 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/10/25 11:28:21 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,11 @@
 void	print_stacks(t_list	**stacks_ptr)
 {
 	int	*nbr;
-
+	t_list	*head_a;
+	t_list	*head_b;
+	
+	head_a = stacks_ptr[0];
+	head_b = stacks_ptr[1];
 	if (stack_sorted(stacks_ptr))
 		printf("stacks sorted\n");
 	else
@@ -44,4 +48,6 @@ void	print_stacks(t_list	**stacks_ptr)
 		printf("NULL\n");
 	else
 		printf("%d\n", *nbr);
+	stacks_ptr[0] = head_a;
+	stacks_ptr[1] = head_b;
 }

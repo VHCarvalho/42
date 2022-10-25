@@ -6,7 +6,7 @@
 /*   By: vcarvalh <vh.crvlh@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 20:33:33 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/10/24 20:00:56 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/10/25 11:45:22 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,10 @@ t_list	**ft_stkrotate(t_list	**stacks_ptr, int stkindex)
 	ptrlast->next = ptrhead;
 	ptrhead->next = NULL;
 	stacks_ptr[stkindex] = new_head;
+	if (stkindex == 0)
+		ft_putstr_fd("ra\n", 1);
+	else
+		ft_putstr_fd("rb\n", 1);
 	return (stacks_ptr);
 }
 #include <stdio.h>
@@ -124,6 +128,10 @@ t_list	**ft_stkpush_to_stack(t_list **stacks_ptr, int src, int dst)
 	stk_dst = swap;
 	stacks_ptr[src] = stk_src;
 	stacks_ptr[dst] = stk_dst;
+	if (dst == 1)
+		ft_putstr_fd("pb\n", 1);
+	else
+		ft_putstr_fd("pa\n", 1);
 	return (stacks_ptr);
 }
 

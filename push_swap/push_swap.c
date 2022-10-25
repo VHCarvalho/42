@@ -6,7 +6,7 @@
 /*   By: vcarvalh <vh.crvlh@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:52:51 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/10/24 19:50:10 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/10/25 11:49:43 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	main(int argc, char *argv[])
 {
-	t_list	*stack_a;
-	t_list	*stack_b;
 	t_list	**stacks_ptr;
 
 	if (argc == 1)
@@ -24,13 +22,11 @@ int	main(int argc, char *argv[])
 	if (stacks_ptr == NULL)
 		return (0);
 	stacks_ptr = ft_stkinit(stacks_ptr, argc, argv);
+	//print_stacks(stacks_ptr);
 	redo_stack(stacks_ptr);
+	radix_sort(stacks_ptr);
 	//printing stacks
-	stack_a = stacks_ptr[0];
-	stack_b = stacks_ptr[1];
-	print_stacks(stacks_ptr);
-	stacks_ptr[0] = stack_a;
-	stacks_ptr[1] = stack_b;
+	//print_stacks(stacks_ptr);
 	ft_stkfree_stack(stacks_ptr[0]);
 	ft_stkfree_stack(stacks_ptr[1]);
 	free(stacks_ptr);

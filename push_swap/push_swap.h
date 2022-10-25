@@ -6,7 +6,7 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 19:10:18 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/10/24 19:10:52 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/10/25 11:30:27 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_list	**ft_stkinit(t_list **stacks_ptr, int size, char *nbrs[]);
 int	stack_sorted(t_list	**stacks_ptr);
 void	redo_stack(t_list	**stacks_ptr);
 int	get_rank(t_list *stack, int nbr);
+void radix_sort(t_list **stacks_ptr);
 //apagar
 void	print_stacks(t_list	**stacks_ptr);
 
