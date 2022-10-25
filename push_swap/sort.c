@@ -6,7 +6,7 @@
 /*   By: vcarvalh <vh.crvlh@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 12:30:19 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/10/25 11:36:01 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/10/25 14:57:41 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,11 @@ int	stack_sorted(t_list	**stacks_ptr)
 
 void	redo_stack(t_list	**stacks_ptr)
 {
-	//Veja, node a node qual é o ranking dele e adicione isso a uma nova stack
-	//depois dê free na stack original e redirecione stack para a nova stack
 	t_list	*ptr;
 	t_list	*head;
 	t_list	*new_stack;
-	int			*nbr;
-	int			*rank;
+	int		*nbr;
+	int		*rank;
 
 	new_stack = ft_lstnew(NULL);
 	ptr = stacks_ptr[0];
@@ -64,9 +62,8 @@ void	redo_stack(t_list	**stacks_ptr)
 
 int	get_rank(t_list *stack, int nbr)
 {
-	//função que vai retornar qual é o ranking daquele int na stack
-	int	*nbr_cmp;
-	int	ret;
+	int		*nbr_cmp;
+	int		ret;
 	t_list	*ptr;
 
 	ret = 0;
@@ -90,7 +87,8 @@ int	stack_empty(t_list	*stack)
 		return (1);
 	return (0);
 }
-void radix_sort(t_list **stacks_ptr)
+
+void	radix_sort(t_list **stacks_ptr)
 {
 	int			i;
 	int			j;
@@ -105,7 +103,7 @@ void radix_sort(t_list **stacks_ptr)
 		while (j < stack_size)
 		{
 			nbr = stacks_ptr[0]->content;
-			if (((*nbr>>i)&1) == 1)
+			if (((*nbr >> i) & 1) == 1)
 				stacks_ptr = ft_stkrotate(stacks_ptr, 0);
 			else
 				stacks_ptr = ft_stkpush_to_stack(stacks_ptr, 0, 1);

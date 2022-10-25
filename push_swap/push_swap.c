@@ -6,7 +6,7 @@
 /*   By: vcarvalh <vh.crvlh@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:52:51 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/10/25 11:49:43 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/10/25 16:35:04 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ int	main(int argc, char *argv[])
 	if (stacks_ptr == NULL)
 		return (0);
 	stacks_ptr = ft_stkinit(stacks_ptr, argc, argv);
-	//print_stacks(stacks_ptr);
 	redo_stack(stacks_ptr);
-	radix_sort(stacks_ptr);
-	//printing stacks
-	//print_stacks(stacks_ptr);
+	if (ft_lstsize(stacks_ptr[0]) > 5)
+		radix_sort(stacks_ptr);
+	else
+		small_stack_sort(stacks_ptr);
 	ft_stkfree_stack(stacks_ptr[0]);
 	ft_stkfree_stack(stacks_ptr[1]);
 	free(stacks_ptr);

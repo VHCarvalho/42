@@ -1,4 +1,4 @@
-SRCS 			= push_swap.c utils.c test.c sort.c
+SRCS 			= push_swap.c utils.c sort.c utils2.c small_sort.c 
 
 OBJS			= $(SRCS:.c=.o)
 	
