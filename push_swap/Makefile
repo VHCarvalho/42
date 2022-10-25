@@ -1,4 +1,4 @@
-SRCS 			= push_swap.c utils.c
+SRCS 			= push_swap.c utils.c test.c sort.c
 
 OBJS			= $(SRCS:.c=.o)
 	
@@ -9,7 +9,7 @@ LIBFT_DIR = ./libft
 INC				= -I. -I$(LIBFT_DIR)
 
 CC				= gcc
-CFLAG			= -Wall -Wextra -Werror -g
+CFLAG			= -Wall -Wextra -Werror -g3
 RM				= rm -f
 
 ifeq ($(DEBUG), 1)

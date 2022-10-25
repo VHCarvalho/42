@@ -6,7 +6,7 @@
 /*   By: vcarvalh <vh.crvlh@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 20:33:33 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/10/23 16:33:23 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/10/24 20:00:56 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,26 @@
 // V-rra (reverse rotate a): Shift down all elements of stack a by 1. The last element becomes the first one.
 // V-rrb (reverse rotate b): Shift down all elements of stack b by 1. The last element becomes the first one.
 // V-rrr : rra and rrb at the same time.
+
+t_list	**ft_stkinit(t_list **stacks_ptr, int size, char *nbrs[])
+{
+	int	*nbr;
+	int	i;
+
+	i = 1;
+	stacks_ptr[0] = ft_lstnew(NULL);
+	stacks_ptr[1] = ft_lstnew(NULL);
+	while (i < size)
+	{
+		nbr = malloc(sizeof(int));
+		if (nbr == NULL)
+			return (0);
+		*nbr = ft_atoi(nbrs[i]);
+		ft_stkpush(stacks_ptr, nbr);
+		i++;
+	}
+	return (stacks_ptr);
+}
 
 t_list	**ft_stkrev_rotate(t_list **stacks_ptr, int stkindex)
 {
@@ -63,30 +83,20 @@ t_list	**ft_stkrotate(t_list	**stacks_ptr, int stkindex)
 	stacks_ptr[stkindex] = new_head;
 	return (stacks_ptr);
 }
-
-void	ft_stkfree_stacks(t_list **stacks_ptr)
+#include <stdio.h>
+void	ft_stkfree_stack(t_list *stack)
 {
 	t_list	*ptr;
-	t_list	*stack_a;
-	t_list	*stack_b;
 
-	stack_a = stacks_ptr[0];
-	stack_b = stacks_ptr[1];
-	while (stack_a->next != NULL)
+	if (!stack)
+		return ;
+	while (stack->next != NULL)
 	{
-		ptr = stack_a->next;
-		ft_lstdelone(stack_a, free);
-		stack_a = ptr;
+		ptr = stack->next;
+		ft_lstdelone(stack, free);
+		stack = ptr;
 	}
-	ft_lstdelone(stack_a, free);
-	while (stack_b->next != NULL)
-	{
-		ptr = stack_b->next;
-		ft_lstdelone(stack_b, free);
-		stack_b = ptr;
-	}
-	ft_lstdelone(stack_b, free);
-	free(stacks_ptr);
+	ft_lstdelone(stack, free);
 }
 
 t_list	**ft_stkpush_to_stack(t_list **stacks_ptr, int src, int dst)
@@ -132,17 +142,15 @@ t_list	*ft_stkswap(t_list *stack)
 	return (stack);
 }
 
-t_list	**ft_stkpush(t_list **stack, int *content)
+void	ft_stkpush(t_list **stack, int *content)
 {
 	t_list	*ptrstk;
 
+	if (!stack)
+		return ;
 	ptrstk = *stack;
-	if (ptrstk->content == NULL)
-	{
-		ft_lstdelone(ptrstk, free);
-		ptrstk = ft_lstnew(content);
-	}
+	if (!ptrstk->content)
+		ptrstk->content = content;
 	else
-		ft_lstadd_front(stack, ft_lstnew(content));
-	return (stack);
+		ft_lstadd_back(stack, ft_lstnew(content));
 }
