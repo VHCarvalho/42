@@ -6,7 +6,7 @@
 /*   By: vcarvalh <vh.crvlh@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:52:51 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/10/25 16:35:04 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/10/26 19:37:15 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ int	main(int argc, char *argv[])
 
 	if (argc == 1)
 		return (0);
+	if (!check_errors(argc, argv))
+	{
+		ft_putstr_fd("Error\n", 1);
+		return (0);
+	}
 	stacks_ptr = malloc(sizeof(t_list *) * 2);
 	if (stacks_ptr == NULL)
 		return (0);

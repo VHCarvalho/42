@@ -6,7 +6,7 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 19:10:18 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/10/25 17:46:07 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/10/27 08:35:11 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,10 @@ void	expected_sort(t_list	**stacks_ptr);
 void	check_cases(t_list **stacks_ptr, int *nbr1, int *nbr2, int *nbr3);
 int		worst_case(t_list **stacks_ptr, int i);
 void	sort_5stack(t_list **stacks_ptr);
+int		check_alpha(int argc, char *argv[]);
+int		check_maxmin(int argc, char *argv[]);
+long	ft_atol(const char *str);
+int		check_duplicates(int argc, char *argv[]);
+int		check_errors(int argc, char *argv[]);
 
 #endif

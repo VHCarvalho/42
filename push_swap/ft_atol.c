@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/04 09:48:18 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/10/26 19:04:27 by vcarvalh         ###   ########.fr       */
+/*   Created: 2022/10/26 19:06:15 by vcarvalh          #+#    #+#             */
+/*   Updated: 2022/10/26 19:08:29 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
 static int	is_blank(const char str)
 {
@@ -39,7 +39,7 @@ static int	is_negative(const char *str)
 	return (1);
 }
 
-int	ft_atoi(const char *str)
+long	ft_atol(const char *str)
 {
 	int		neg;
 	long	ret;
