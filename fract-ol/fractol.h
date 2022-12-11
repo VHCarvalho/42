@@ -6,7 +6,7 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 18:54:52 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/12/04 18:56:13 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2022/12/06 19:39:34 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define FRACTOL_H
 
 # include "mlx_linux/mlx.h"
+#include <math.h>
 
 
 #endif
