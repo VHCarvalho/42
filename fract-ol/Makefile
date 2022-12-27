@@ -12,7 +12,7 @@ MLX_DIR = ./mlx_linux
 
 INC				= -I. -I$(MLX_DIR)
 
-CC				= gcc
+CC				= cc
 CFLAG			= -Wall -Wextra -Werror -g3
 RM				= rm -f
 
