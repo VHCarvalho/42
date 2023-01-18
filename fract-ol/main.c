@@ -6,7 +6,7 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 19:18:03 by vcarvalh          #+#    #+#             */
-/*   Updated: 2022/12/27 20:42:33 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/07 14:49:25 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,47 +14,42 @@
 #include <stdio.h>
 #include <unistd.h>
 
-void	draw_line(void *mlx, void *mlx_win, int x_start, int y_start, int x_end, int y_end, int color)
+typedef struct	s_data
 {
-	int			x_delta;
-	int			y_delta;
-	double	pixel_x;
-	double	pixel_y;
-	double	pixels;
-	ssize_t	temp;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_data;
 
-	x_delta = x_end - x_start;
-	y_delta = y_end - y_start;
-	//printf("delta x:%d -- delta y:%d", x_delta, y_delta);
-	pixels = sqrt((x_delta * x_delta) + (y_delta * y_delta));
-	//printf("pixels: %f", pixels);
-	x_delta /= pixels;
-	y_delta /= pixels;
-	pixel_x = x_start;
-	pixel_y = y_start;
-	while (pixels)
-	{
-		temp = write(1, "entrou", 6);
-		temp = write(1,"\n", 1);
-		if (temp < 0)
-			return;
-		mlx_pixel_put(mlx, mlx_win, pixel_x, pixel_y, color);
-		pixel_x += x_delta;
-		pixel_y += y_delta;
-		pixels--;
-	}
+void	my_mlx_pixel_put(t_data	*data, int x, int y, int color)
+{
+	char	*dst;
 
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
 }
 
-int	main(void)
+void	put_line(t_data	*data, int x, int y, int length, int color)
+{
+	while (length)
+	{
+		my_mlx_pixel_put(data, x + length, y, color );
+		length--;
+	}
+}
+int main(void)
 {
 	void	*mlx;
 	void	*mlx_win;
+	t_data	img;
 
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 640, 360, "Hello world!");
-	mlx_pixel_put(mlx, mlx_win,640/2, 360/2, 0xFFFFFF);
-	draw_line(mlx, mlx_win, 640, 360, 0, 0, 0xFFFFFF);
+	mlx_win = mlx_new_window(mlx, 1920/2, 1080/2, "test");
+	img.img = mlx_new_image(mlx, 1920/2, 1080/2);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+	put_line(&img, 5, 5,100, 0x00FF0000);
+	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
 }
-
