@@ -3,14 +3,9 @@ SRCS 			= main.c
 OBJS			= $(SRCS:.c=.o)
 
 %.o: %.c
-	$(CC) $(CFLAG) -I/usr/include -Imlx_linux -O3 -c $< -o $@
+	$(CC) $(CFLAG) -c $< -o $(<:.c=.o)
 
-	
 NAME  		= fractol
-MLX   	= ./mlx_linux/libmlx_Linux.a
-MLX_DIR = ./mlx_linux
-
-INC				= -I. -I$(MLX_DIR)
 
 CC				= cc
 CFLAG			= -Wall -Wextra -Werror -g3
@@ -20,24 +15,32 @@ ifeq ($(DEBUG), 1)
 	D_FLAG = -g
 endif
 
+UNAME	:= $(shell uname)
+
+ifeq ($(UNAME), Linux)
+    OFLAGS    = $(CFLAG) -L ./mlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux \
+              -lXext -lX11 -lm -lz
+    MLX        = ./mlx_linux
+else
+    OFLAGS    = $(CFLAG) -L ./mlx -lmlx -framework OpenGL -framework AppKit
+    MLX        = ./mlx
+endif
 
 all:			$(NAME)
 
-$(NAME):	$(OBJS) $(MLX)
-	 #$(CC)  $(CFLAG) $(SRCS) $(MLX) $(INC) -o $(NAME)
-	 $(CC) $(OBJS) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+$(NAME):	$(OBJS)
+	 printf "Compiling...\n"
+	 make -C $(MLX)
+	 $(CC) $(OBJS) $(OFLAGS) -o $@
 	 printf "Compiled.\n"
 
-$(MLX):
-	 $(MAKE) DEBUG=$(DEBUG) -s -C $(MLX_DIR)
 
 clean: 
 	 $(RM) $(OBJS)
-	 $(MAKE) -s clean -C $(MLX_DIR)
+	 $(MAKE) -s clean -C $(MLX)
 
 fclean: clean
 	 $(RM) $(NAME)
-	 #$(MAKE) -s fclean -C $(MLX_DIR)
 
 re: fclean all
 
