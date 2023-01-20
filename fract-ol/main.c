@@ -6,7 +6,7 @@
 /*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 19:18:03 by vcarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 15:43:53 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/20 18:02:06 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,23 @@ int	mouse_hook(int keycode, int x, int y, void *vars)
 	return (1);
 }
 
+int	exit_fractol(t_vars *vars)
+{
+	mlx_destroy_image(vars->mlx, vars->img.img);
+	mlx_destroy_window(vars->mlx, vars->win);
+	exit(EXIT_SUCCESS);
+	return (0);
+}
+
 int key_hook(int keycode, t_vars *vars)
 {
 	if (keycode == 53)
-	{
-		mlx_destroy_image(vars->mlx, vars->img.img);
-		mlx_destroy_window(vars->mlx, vars->win);
-	}
+		exit_fractol(vars);
 	return (1);
 }
+
 int main(void)
 {
-	//void	*mlx;
-	//void	*mlx_win;
-	//t_data	img;
 	t_vars	vars;
 
 	vars.mlx = mlx_init();
@@ -63,5 +66,6 @@ int main(void)
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.img.img, 0, 0);
 	mlx_mouse_hook(vars.win, mouse_hook, &vars);
 	mlx_key_hook(vars.win, key_hook, &vars);
+	mlx_hook(vars.win, 17, 0L, exit_fractol, &vars);
 	mlx_loop(vars.mlx);
 }

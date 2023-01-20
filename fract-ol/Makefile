@@ -38,6 +38,7 @@ $(NAME):	$(OBJS)
 clean: 
 	 $(RM) $(OBJS)
 	 $(MAKE) -s clean -C $(MLX)
+	 printf "Cleaning done.\n"
 
 fclean: clean
 	 $(RM) $(NAME)
