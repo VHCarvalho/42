@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcarvalh <vcarvalh@student.42.rio>         +#+  +:+       +#+        */
+/*   By: vcarvalh <vh.crvlh@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 18:54:52 by vcarvalh          #+#    #+#             */
-/*   Updated: 2023/01/20 17:34:36 by vcarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/22 13:46:25 by vcarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 
 #include <math.h>
 #include <stdlib.h>
+//RETIRAR
+#include <stdio.h>
 # ifdef __linux__
 #  include "./mlx_linux/mlx.h"
 # else
@@ -38,3 +40,9 @@ typedef struct s_vars
 	t_data	img;
 } t_vars;
 #endif
+
+void	my_mlx_pixel_put(t_data	*data, int x, int y, int color);
+void	put_line(t_data	*data, int x, int y, int length, int color);
+int	mouse_hook(int keycode, int x, int y, void *vars);
+int	exit_fractol(t_vars *vars);
+int key_hook(int keycode, t_vars *vars);
